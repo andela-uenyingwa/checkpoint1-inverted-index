@@ -1,0 +1,25 @@
+{
+  "name": "checkpoint1-inverted-index",
+  "version": "1.0.0",
+  "description": "Andela checkpoint 1",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb-base": "^11.0.0",
+    "eslint-plugin-import": "^2.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela-uenyingwa/checkpoint1-inverted-index.git"
+  },
+  "author": "Uloaku Enyingwa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela-uenyingwa/checkpoint1-inverted-index/issues"
+  },
+  "homepage": "https://github.com/andela-uenyingwa/checkpoint1-inverted-index#readme"
+}
