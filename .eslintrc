@@ -16,6 +16,7 @@
     "no-param-reassign": 0,
     "comma-dangle": 0,
     "curly": [1, "multi-line"],
+    "arrow-body-style": 0,
     "no-shadow": [1, { "allow": ["req", "res", "err"] }],
     "valid-jsdoc": [1, {
       "requireReturn": true,
