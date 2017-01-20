@@ -1,21 +1,32 @@
 const gulp = require('gulp');
-const browserify = require('browserify');
 const browserSync = require('browser-sync').create();
+const jasmineBrowser = require('gulp-jasmine-browser');
 
-    gulp.task('browser-sync', () => {
-      browserSync.init({
-        server: './src/'
-      });
-    });
 
-    gulp.task('js', () => {
-      gulp.src('jasmine/spec/inverted-index-test.js')
-      .pipe(browserify())
-      .pipe(uglify())
-      .pipe(gulp.dest('./jasmine'));
-    });
+gulp.task('browserSync', ['watch'], () => {
+  browserSync.init({
+    server: {
+      baseDir: 'src/',
+    },
+    port: 3000,
+    ghostMode: false
+  });
+});
 
-    gulp.task('default', ['browser-sync'], () => {
-      const filesToWatch = ['**/*.js', '**/*.css', '**/*.html'];
-      gulp.watch(filesToWatch).on('change', browserSync.reload);
-    });
+gulp.task('default', ['browserSync']);
+
+gulp.task('watch', () => {
+  gulp.watch('.src/css/*.css', browserSync.reload);
+  gulp.watch('src/index.html', browserSync.reload);
+  gulp.watch(['./src/*.js', './jasmine/spec/*.js'], browserSync.reload);
+});
+
+
+// gulp.task('jasmine', () => {
+//   const filesForTest = ['./jasmine/spec/less/**/*'];
+//     gulp.src(filesForTest)
+//     .pipe(watch(filesForTest))
+//     .pipe(jasmineBrowser.specRunner({ console: true }))
+//     .pipe(jasmineBrowser.headless());
+// });
+
