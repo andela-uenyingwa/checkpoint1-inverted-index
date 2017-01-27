@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Fri Jan 20 2017 14:54:12 GMT+0100 (WAT)
 
-module.exports = function(config) {
+module.exports = (config) => {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -14,7 +14,9 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: ['src/js/inverted-index.js'
+    files: ['src/js/inverted-index.js',
+      'src/js/inverted-index-utilities.js',
+      'jasmine/build/bundle.js'
     ],
 
 
@@ -25,14 +27,19 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
+    preprocessors: { 'src/js/inverted-index.js': ['coverage']
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage', 'coveralls'],
+
+    coverageReporter: {
+      type: 'lcov',
+      dir: 'coverage/'
+    },
 
 
     // web server port
@@ -44,7 +51,8 @@ module.exports = function(config) {
 
 
     // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO ||
+    // config.LOG_DEBUG
     logLevel: config.LOG_INFO,
 
 
@@ -64,5 +72,5 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity
-  })
-}
+  });
+};
