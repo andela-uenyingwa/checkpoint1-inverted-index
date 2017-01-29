@@ -6,10 +6,7 @@ angular.module('InvertedIndexApp', [])
     $scope.indexTableFiles = [];
     $scope.searchResults = '';
     $scope.availableFiles = [];
-
-    $(document).ready(() => {
-      $('select').material_select();
-    });
+    $scope.currentFile = '';
 
     const uploadField = document.getElementById('upload');
     uploadField.addEventListener('change', (e) => {
@@ -31,6 +28,7 @@ angular.module('InvertedIndexApp', [])
             $scope.myInvertedIndex.files[selected.name] = currentContent;
             $scope.$apply(() => {
               $scope.availableFiles = Object.keys($scope.myInvertedIndex.files);
+              $scope.currentFile = $scope.filename;
             });
           } else {
             return false;
@@ -51,7 +49,11 @@ angular.module('InvertedIndexApp', [])
       return arr;
     };
     $scope.createIndex = () => {
-      $scope.indexTable = $scope.myInvertedIndex.createIndex($scope.filename);
+      const selectBox = document.getElementById('file-to-index');
+      const fileToIndex = selectBox.options[selectBox.selectedIndex].value;
+
+      $scope.indexTable = $scope.myInvertedIndex.createIndex(fileToIndex);
+      $scope.currentFile = '';
     };
 
     const searchField = document.getElementById('search');
@@ -60,7 +62,17 @@ angular.module('InvertedIndexApp', [])
       $scope.$apply(() => {
         $scope.searchResults = $scope.myInvertedIndex.searchIndex(keyValue);
       });
-      console.log($scope.searchResults);
-      // const inputValue = e.
     });
   });
+
+    $(document).ready(() => {
+      $('select').material_select();
+      $('.collapsible').collapsible();
+
+      $('select').one('DOMSubtreeModified', (event) => {
+        setTimeout(() => {
+          $('select').material_select();
+        }, 1000);
+      });
+    });
+

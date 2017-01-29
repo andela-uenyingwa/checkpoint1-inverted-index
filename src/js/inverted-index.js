@@ -2,18 +2,17 @@ class InvertedIndex {
   constructor() {
     this.files = {};
     this.indexList = {};
+    // this.myUtils = new InvertedIndexUtilities();
   }
 
   createIndex(filePath) {
     if (this.files.hasOwnProperty(filePath)) {
-      console.log(filePath);
       const currentFile = this.files[filePath];
       this.indexList[filePath] = this.indexList[filePath] || {};
       const docLength = currentFile.length;
       for (let docIndex = 0; docIndex < docLength; docIndex += 1) {
         const currentDoc = currentFile[docIndex];
-        const getContent = InvertedIndexUtilities.getToken
-          (`${currentDoc.title} ${currentDoc.text}`);
+        const getContent = InvertedIndexUtilities.getToken(`${currentDoc.title} ${currentDoc.text}`);
         getContent.forEach((word) => {
           if (this.indexList[filePath].hasOwnProperty(word)) {
             if (this.indexList[filePath][word].indexOf(docIndex) === -1) {

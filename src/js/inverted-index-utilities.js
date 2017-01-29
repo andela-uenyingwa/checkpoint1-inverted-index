@@ -11,6 +11,9 @@ class InvertedIndexUtilities {
   }
 
   static readBookData(data) {
+    if (typeof data !== 'object' || data.length === 0) {
+      return false;
+    }
     try {
       data.forEach((currentDoc) => {
         const hasTitle = currentDoc.hasOwnProperty('title');
@@ -20,8 +23,7 @@ class InvertedIndexUtilities {
         }
       });
       return true;
-    }
-    catch (err) {
+    } catch (err) {
       return false;
     }
   }
