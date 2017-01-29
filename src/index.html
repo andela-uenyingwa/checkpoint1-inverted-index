@@ -16,93 +16,115 @@
       </div>
     </nav>
   </header>
-  {{availableFiles}}
-  <section>
-    <div class="row">
-      <div class="col s6">
-        <form action="#">
+  <div class="row">
+    <div class="col s12">
+      <div class="top">
+        <div class="col s6 file-processes">
+          <h4>Choose File</h4>
           <div class="file-field input-field">
-            <div class="btn color1" id="upload">
-              <span>Choose File</span>
-              <i class="material-icons right">library_add</i>
-              <input type="file" multiple>
+            <div class="btn color1">
+              <span>Upload</span><i class="material-icons right">file_upload</i>
+              <input type="file" id="upload" multiple>
             </div>
             <div class="file-path-wrapper">
-              <input class="file-path validate" type="text" placeholder="Upload files">
+              <input class="file-path" type="text">
             </div>
           </div>
-        </form>
-
-        <!--<div class="row">
-          <div class="input-field col s3">
-            <select multiple>
-             <option value="" disabled selected>Choose file</option>
-             <option value="1">Option 1</option>
-          </select>
-          </div>-->
-        <div class="">
-          <button class="btn create-action color1" ng-click="createIndex()">Create
-    <i class="material-icons right">create</i>
-  </button></div>
-        <!--</div>-->
-
-        <!--<div class="row">
-          <div class="col s3 m5">
-            <div class="card color1">
-              <span class="white-text">
-            <ul>Steps</ul>
-            <ol>1. Choose a Valid Json File.</ol>
-            <ol>2. Click the 'Create Index' button</ol>
-            <ol>3. To Search Enter your search term(s)</ol>
-            <ol>4. Click the 'Search' button</ol>
-          </span>
+          <div class="row" ng-show="availableFiles.length">
+            <div class="col s3">
+              <div class="input-field">
+                <select id="file-to-index">
+                  <option value="">Select File</option>
+                  <option ng-repeat="file in availableFiles" value="{{file}}">{{ file }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col s3">
+              <button class="btn createbtn color1" ng-click="createIndex()">Create<i class="material-icons right" >create</i>
+              </button>
             </div>
           </div>
-        </div>-->
-
-        <div class="collapsible">
-          <ul class="collapsible" data-collapsible="accordion">
-            <li>
-              <div class="collapsible-header" ng-repeat="file in availableFiles"><i class="material-icons">keyboard_arrow_right</i>{{file}}</div>
-              <div class="collapsible-body" ng-repeat="(key, value) in indexTable"><span>
-                <table class="striped">
-        <thead>
-          <tr>
-              <th data-field="id">Word</th>
-              <th data-field="name" ng-repeat="items in arrayFromFileLength(key)">Document{{items + 1}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="(keys, index) in value">
-            <td>{{keys}}</td>
-            <td ng-repeat="items in arrayFromFileLength(key)"><i class="material-icons #303f9f-text" ng-if="index.includes(items)">done</i>
-            <i class="material-icons red-text" ng-if="index.includes(items) === false">close</i>
-            </td>
-          </tr>
-        </tbody>
-      </table></span></div>
-            </li>
-          </ul>
         </div>
-
-
+        <div class="col s6 search-action">
+          <h4>Search</h4>
+          <div class="nav-wrapper">
+            <div class="input-field">
+              <input id="search" type="search">
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="col s6">
-        <div class="input-field">
-          <input id="search" type="search" class="search-input-field" placeholder="Search"><i class="search</i></div>
-          <label class="label-icon" for="search"></label>
+      <div class="row">
+        <div class="col s12">
+          <div class="bottom">
+            <div class="col s6 display-indextables">
+              <div>
+                <ul class="collapsible" data-collapsible="accordion">
+                  <li ng-repeat="(key, value) in indexTable">
+                    <div class="collapsible-header"><i class="material-icons">insert_drive_file</i>{{key}}</div>
+                    <div class="collapsible-body">
+                      <table class="striped">
+                        <thead>
+                          <tr>
+                            <th data-field="id">Words</th>
+                            <th ng-repeat="items in arrayFromFileLength(key)">Document{{ items + 1}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="(text, number) in value">
+                            <td>{{text}}</td>
+                            <td ng-repeat="index in arrayFromFileLength(key)">
+                              <i class="material-icons green-text" ng-if="number.includes(index)">done</i>
+                              <i class="material-icons red-text" ng-if="!number.includes(index)">close</i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col s6 display-searchtable">
+              <div>
+                <ul class="collapsible" data-collapsible="accordion">
+                  <li ng-repeat="(key, value) in searchResults">
+                    <div class="collapsible-header"><i class="material-icons">insert_drive_file</i>{{key}}</div>
+                    <div class="collapsible-body">
+                      <table class="striped">
+                        <thead>
+                          <tr>
+                            <th data-field="id">Words</th>
+                            <th ng-repeat="items in arrayFromFileLength(key)">Document{{items + 1}}</th </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="(text, number) in value">
+                            <td>{{text}}</td>
+                            <td ng-repeat="index in arrayFromFileLength(key)">
+                              <i class="material-icons green-text" ng-if="number.includes(index)">done</i>
+                              <i class="material-icons red-text" ng-if="!number.includes(index)">close</i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-
       </div>
     </div>
-  </section>
-
-  <!--<footer>
+  </div>
+  <footer>
     <nav class="color1">
       <p>&copy; Uloaku Enyingwa 2017</p>
     </nav>
-  </footer>-->
+  </footer>
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>`
