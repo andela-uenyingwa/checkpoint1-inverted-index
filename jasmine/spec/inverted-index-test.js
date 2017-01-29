@@ -1,30 +1,44 @@
+/* Test Setup */
+const myInvertedIndex = new InvertedIndex();
+
+const book = require('./../books.json');
+const emptyBook = require('./../empty-book.json');
+const invalidBook = require('./../bad-book.json');
+
+myInvertedIndex.files['book.json'] = book;
+
 describe('Inverted Index', () => {
   describe('Read book data', () => {
     it('should check that the file uploaded is a valid JSON file', () => {
-      expect(myInvertedIndex.readBookData([])).toBeFalsy();
+      expect(InvertedIndexUtilities.readBookData(invalidBook)).toEqual(false);
     });
 
     it('should check that the file uploaded is not empty', () => {
-      expect(myInvertedIndex.readBookData(book)).tobeTruthy();
+      expect(InvertedIndexUtilities.readBookData(emptyBook)).toEqual(false);
     });
   });
 
   describe('Populate Index', () => {
     it('should verify that the index is created once the JSON file has been read', () => {
-      expect(myInvertedIndex.createIndex('books.json')).toBeTruthy();
+      const index = myInvertedIndex.createIndex('book.json');
+      expect(index['book.json']).toBeDefined();
     });
 
     it('should verify that the index maps the string keys to the correct objects in the JSON array', () => {
-      expect(myInvertedIndex.getIndex('books.json').alice).toEqual([0]);
+      const index = myInvertedIndex.getIndex('book.json');
+      expect(myInvertedIndex.getIndex('book.json').and).toEqual([0, 1]);
     });
   });
 
   describe('Search Index', () => {
     it('should return an array of correct objects that contains the search terms', () => {
-      expect(myInvertedIndex.searchIndex('alice fellowship', 'books.json').toEqual({'books.json': { alice: [ 0 ], fellowship: [1] } }));
+      expect(myInvertedIndex.searchIndex('alice fellowship', ['book.json'])).toEqual({'book.json': {alice: [0], fellowship: [1]}});
     });
+
     it('should go through all indexed files if a filename is not passed', () => {
-      expect(myInvertedIndex.searchIndex('alice fellowship').toEqual({'books.json': { alice: [ 0 ], fellowship: [1] } }));
+      expect(myInvertedIndex.searchIndex('fellowship')).toEqual({'book.json': {fellowship: [1] } });
     });
   });
 });
+
+
