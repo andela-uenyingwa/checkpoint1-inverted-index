@@ -6,27 +6,32 @@ body {
   background-color: #303f9f !important;
 }
 
-.brand-logo {
-  margin-left: 20px;
-}
-
-.row {
-  margin-left: 20px;
-  margin-right: 20px;
+.top {
+  margin-top: 8px;
 }
 
 .create-action {
   margin-top: 30px;
 }
 
-.collapsible, .collapsible-header {
+.createbtn {
+  margin-top: 25px;
+}
+
+.collapsible,
+.collapsible-header {
   background: lightgrey;
+}
+
+.collapsible-body {
+  max-height: 300px;
+  overflow: auto;
 }
 
 footer {
   text-align: center;
-  min-height: 10vh;
+  min-height: 100vh;
   position: fixed;
   width: 100%;
-  margin-top: 85px;
+  margin-top: 540px;
 }
