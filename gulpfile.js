@@ -35,13 +35,17 @@ gulp.task('karma', (done) => {
   });
 });
 
+gulp.task('watch-test', () => {
+  gulp.watch(['src/js/**/*.js', './jasmine/spec/*.js'], ['scripts', 'karma']);
+});
+
 gulp.task('watch', () => {
   gulp.watch('src/css/**/*.css', browserSync.reload);
   gulp.watch('**/*.html', browserSync.reload);
   gulp.watch(['src/js/**/*.js', './jasmine/spec/*.js'], browserSync.reload);
 });
 
-gulp.task('test', ['karma']);
+// gulp.task('test', ['karma']);
 // gulp.task('jasmine', () => {
 //   const filesForTest = ['./jasmine/spec/less/**/*'];
 //     gulp.src(filesForTest)
