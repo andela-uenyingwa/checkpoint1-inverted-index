@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "gulp",
-    "test": "gulp-test"
+    "test": "gulp watch-test"
   },
   "repository": {
     "type": "git",
