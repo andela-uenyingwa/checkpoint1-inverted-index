@@ -45,12 +45,3 @@ gulp.task('watch', () => {
   gulp.watch(['src/js/**/*.js', './jasmine/spec/*.js'], browserSync.reload);
 });
 
-// gulp.task('test', ['karma']);
-// gulp.task('jasmine', () => {
-//   const filesForTest = ['./jasmine/spec/less/**/*'];
-//     gulp.src(filesForTest)
-//     .pipe(watch(filesForTest))
-//     .pipe(jasmineBrowser.specRunner({ console: true }))
-//     .pipe(jasmineBrowser.headless());
-// });
-
