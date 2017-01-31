@@ -32,11 +32,11 @@ describe('Inverted Index', () => {
 
   describe('Search Index', () => {
     it('should return an array of correct objects that contains the search terms', () => {
-      expect(myInvertedIndex.searchIndex('alice fellowship', ['book.json'])).toEqual({'book.json': {alice: [0], fellowship: [1]}});
+      expect(myInvertedIndex.searchIndex('alice fellowship', ['book.json'])).toEqual({ 'book.json': { alice: [0], fellowship: [1] } });
     });
 
     it('should go through all indexed files if a filename is not passed', () => {
-      expect(myInvertedIndex.searchIndex('fellowship')).toEqual({'book.json': {fellowship: [1] } });
+      expect(myInvertedIndex.searchIndex('fellowship')).toEqual({ 'book.json': { fellowship: [1] } });
     });
   });
 });
