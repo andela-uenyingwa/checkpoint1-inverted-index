@@ -3,8 +3,6 @@ engines:
   eslint:
     enabled: true
     channel: "eslint-2"
-  duplication:
-    enabled: true
     checks:
       Similar code:
         enabled: false
