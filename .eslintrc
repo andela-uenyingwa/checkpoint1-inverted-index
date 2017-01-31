@@ -7,7 +7,7 @@
     "jasmine": true
   },
   "rules": {
-    "max-len":[1, 80, 2],
+    "max-len": [1, 80, 2],
     "indent": [1, 2],
     "one-var": 0,
     "one-var-declaration-per-line": 0,
@@ -18,6 +18,7 @@
     "curly": [1, "multi-line"],
     "arrow-body-style": 0,
     "no-shadow": [1, { "allow": ["req", "res", "err"] }],
+    "no-undef": 0,
     "valid-jsdoc": [1, {
       "requireReturn": true,
       "requireReturnType": true,
@@ -25,11 +26,11 @@
       "requireReturnDescription": true
     }],
     "require-jsdoc": [1, {
-        "require": {
-            "FunctionDeclaration": true,
-            "MethodDefinition": true,
-            "ClassDeclaration": true
-        }
+      "require": {
+        "FunctionDeclaration": true,
+        "MethodDefinition": true,
+        "ClassDeclaration": true
+      }
     }]
   }
 }
