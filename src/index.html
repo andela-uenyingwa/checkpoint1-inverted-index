@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html ng-app="InvertedIndexApp">
+
+<head>
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="css/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body ng-controller="AppController">
+  <header>
+    <nav class="color1">
+      <div class="nav-wrapper">
+        <a class="brand-logo"> {{ appName }} </a>
+      </div>
+    </nav>
+  </header>
+  <div class="row">
+    <div class="col s12">
+      <div class="top">
+        <div class="col s6 file-processes">
+          <h4>Choose File</h4>
+          <div class="file-field input-field">
+            <div class="btn color1">
+              <span>Upload</span><i class="material-icons right">file_upload</i>
+              <input type="file" id="upload" multiple>
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path" type="text">
+            </div>
+          </div>
+          <div class="row" ng-show="availableFiles.length">
+            <div class="col s3">
+              <div class="input-field">
+                <select id="file-to-index">
+                  <option value="">Select File</option>
+                  <option ng-repeat="file in availableFiles" value="{{file}}">{{ file }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col s3">
+              <button class="btn createbtn color1" ng-click="createIndex()">Create<i class="material-icons right" >create</i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col s6 search-action">
+          <h4>Search</h4>
+          <div class="nav-wrapper">
+            <div class="input-field">
+              <input id="search" type="search">
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <div class="bottom">
+            <div class="col s6 display-indextables">
+              <div>
+                <ul class="collapsible" data-collapsible="accordion">
+                  <li ng-repeat="(key, value) in indexTable">
+                    <div class="collapsible-header"><i class="material-icons">insert_drive_file</i>{{key}}</div>
+                    <div class="collapsible-body">
+                      <table class="striped">
+                        <thead>
+                          <tr>
+                            <th data-field="id">Words</th>
+                            <th ng-repeat="items in arrayFromFileLength(key)">Document{{ items + 1}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="(text, number) in value">
+                            <td>{{text}}</td>
+                            <td ng-repeat="index in arrayFromFileLength(key)">
+                              <i class="material-icons green-text" ng-if="number.includes(index)">done</i>
+                              <i class="material-icons red-text" ng-if="!number.includes(index)">close</i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col s6 display-searchtable">
+              <div>
+                <ul class="collapsible" data-collapsible="accordion">
+                  <li ng-repeat="(key, value) in searchResults">
+                    <div class="collapsible-header"><i class="material-icons">insert_drive_file</i>{{key}}</div>
+                    <div class="collapsible-body">
+                      <table class="striped">
+                        <thead>
+                          <tr>
+                            <th data-field="id">Words</th>
+                            <th ng-repeat="items in arrayFromFileLength(key)">Document{{items + 1}}</th </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="(text, number) in value">
+                            <td>{{text}}</td>
+                            <td ng-repeat="index in arrayFromFileLength(key)">
+                              <i class="material-icons green-text" ng-if="number.includes(index)">done</i>
+                              <i class="material-icons red-text" ng-if="!number.includes(index)">close</i>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <nav class="color1">
+      <p>&copy; Uloaku Enyingwa 2017</p>
+    </nav>
+  </footer>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>`
+  <script type="text/javascript" src="js/inverted-index.js"></script>
+  <script type="text/javascript" src="js/inverted-index-utilities.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+</body>
+
+</html>
