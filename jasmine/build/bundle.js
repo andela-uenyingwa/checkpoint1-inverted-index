@@ -63,6 +63,4 @@ describe('Inverted Index', () => {
   });
 });
 
-
-
 },{"./../bad-book.json":1,"./../books.json":2,"./../empty-book.json":3}]},{},[4])
