@@ -1,0 +1,37 @@
+body {
+  background: lightgrey;
+}
+
+.color1 {
+  background-color: #303f9f !important;
+}
+
+.top {
+  margin-top: 8px;
+}
+
+.create-action {
+  margin-top: 30px;
+}
+
+.createbtn {
+  margin-top: 25px;
+}
+
+.collapsible,
+.collapsible-header {
+  background: lightgrey;
+}
+
+.collapsible-body {
+  max-height: 300px;
+  overflow: auto;
+}
+
+footer {
+  text-align: center;
+  min-height: 100vh;
+  position: fixed;
+  width: 100%;
+  margin-top: 540px;
+}
