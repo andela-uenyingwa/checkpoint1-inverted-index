@@ -1,17 +1,19 @@
 engines:
   eslint:
     enabled: true
+    channel: "eslint-2"
   duplication:
     enabled: true
-  config:
-    languages:
-    - javascript
-  checks:
-    import/no-unresolved:
-      enabled: false
-     Similar code:
-      enabled: false
+    checks:
+      Similar code:
+        enabled: false
+    config:
+      languages:
+      - javascript
 ratings:
   paths:
   - src/*.js
-exclude_paths: []
+exclude_paths:
+- "jasmine/lib/jasmine-2.3.4/jasmine-html.js"
+- "jasmine/lib/jasmine-2.3.4/jasmine.js"
+- "gulpfile.js"
