@@ -2,3 +2,5 @@ jasmine/
 node_modules/
 .vscode
 karma.conf.js
+jasmine/lib/jasmine-2.3.4/jasmine-html.js
+jasmine/lib/jasmine-2.3.4/jasmine.js

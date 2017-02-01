@@ -8,12 +8,11 @@ engines:
     checks:
       Similar code:
         enabled: false
-    languages:
-      javascript: true
+    config:
+      languages:
+      - javascript
 ratings:
   paths:
   - src/*.js
 exclude_paths:
-- "jasmine/lib/jasmine-2.3.4/jasmine-html.js"
-- "jasmine/lib/jasmine-2.3.4/jasmine.js"
 - "gulpfile.js"
