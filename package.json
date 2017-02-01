@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "gulp",
-    "test": "gulp test"
+    "test": "gulp test-travis"
   },
   "repository": {
     "type": "git",
