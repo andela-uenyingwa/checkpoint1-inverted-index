@@ -1,13 +1,13 @@
 -- -
 engines:
   eslint:
-  enabled: true
+    enabled: true
 fixme:
   enabled: true
 channel: "eslint-2"
 checks:
   Similar code:
-  enabled: false
+    enabled: false
 config:
   languages:
   -javascript
@@ -17,5 +17,5 @@ ratings:
 /*.js
 exclude_paths:
 - src/js/*.js
-- jsamine/build/
+- jasmine/build/
 - gulpfile.js
