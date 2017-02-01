@@ -18,4 +18,6 @@ ratings:
 exclude_paths:
 - src/js/*.js
 - jasmine/build/
+- jasmine/lib/
 - gulpfile.js
+
