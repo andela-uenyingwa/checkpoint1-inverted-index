@@ -3,7 +3,7 @@ engines:
     enabled: true
 fixme:
   enabled: true
-channel: "eslint-2"
+channel: "eslint-3"
 checks:
   Similar code:
     enabled: false
