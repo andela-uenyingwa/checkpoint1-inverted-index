@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
-const jasmineBrowser = require('gulp-jasmine-browser');
 const browserify = require('gulp-browserify');
 const rename = require('gulp-rename');
 const path = require('path');
@@ -12,7 +11,7 @@ gulp.task('browserSync', ['watch'], () => {
     server: {
       baseDir: 'src',
     },
-    port: 5000,
+    port: 3030,
     ghostMode: false
   });
 });
@@ -35,7 +34,7 @@ gulp.task('karma', (done) => {
   });
 });
 
-gulp.task('watch-test', () => {
+gulp.task('test', () => {
   gulp.watch(['src/js/**/*.js', './jasmine/spec/*.js'], ['scripts', 'karma']);
 });
 
