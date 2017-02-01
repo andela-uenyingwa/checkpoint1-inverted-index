@@ -34,9 +34,12 @@ gulp.task('karma', (done) => {
   });
 });
 
-gulp.task('test', () => {
-  gulp.watch(['src/js/**/*.js', './jasmine/spec/*.js'], ['scripts', 'karma']);
-});
+// gulp.task('test', () => {
+//   new karma({
+//     configFile:
+//   })
+//   gulp.src(['src/js/**/*.js', './jasmine/spec/*.js'], ['scripts', 'karma']);
+// });
 
 gulp.task('watch', () => {
   gulp.watch('src/css/**/*.css', browserSync.reload);
