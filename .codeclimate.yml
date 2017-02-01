@@ -15,6 +15,5 @@ ratings:
   paths:
   - src/*.js
 exclude_paths:
-- jasmine/build/
-- jasmine/lib/
+- jasmine
 - gulpfile.js
