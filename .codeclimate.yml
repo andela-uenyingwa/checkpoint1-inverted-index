@@ -10,11 +10,10 @@ engines:
         enabled: false
     config:
       languages:
-      - javascript
+        javascript: true
 ratings:
   paths:
   - src/*.js
-
 exclude_paths:
 - "jasmine/lib/jasmine-2.3.4/jasmine-html.js"
 - "jasmine/lib/jasmine-2.3.4/jasmine.js"
