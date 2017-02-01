@@ -5,8 +5,10 @@ engines:
  duplication:
    enabled: true
    checks:
+    import/no-unresolved:
+      enabled: false
      Similar code:
-       enabled: false
+      enabled: false
    config:
      languages:
      - javascript
