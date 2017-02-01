@@ -9,10 +9,10 @@ checks:
     enabled: false
 config:
   languages:
-  -javascript
+  - javascript
 ratings:
   paths:
-  -src
+  - src
 /*.js
 exclude_paths:
 - src/js/*.js
