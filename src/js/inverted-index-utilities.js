@@ -20,19 +20,21 @@ class InvertedIndexUtilities {
   }
 
   /**
-   * readBookData
+   * validateData
    * Reads content of JSON and checks for validity
    * @param {Object} data content of JSON to check for validity
    * @return {Boolean} validity status of the JSON content
    */
-  static readBookData(data) {
+  static validateData(data) {
     if (typeof data !== 'object' || data.length === 0) {
       return false;
     }
     try {
       data.forEach((currentDoc) => {
-        const hasTitle = currentDoc.hasOwnProperty('title');
-        const hasText = currentDoc.hasOwnProperty('text');
+        const hasTitle = Object.prototype.hasOwnProperty
+          .call(currentDoc, 'title');
+        const hasText = Object.prototype.hasOwnProperty
+          .call(currentDoc, 'text');
         if (!hasTitle || !(hasText)) {
           return false;
         }

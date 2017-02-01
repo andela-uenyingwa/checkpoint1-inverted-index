@@ -22,9 +22,9 @@ angular.module('InvertedIndexApp', [])
       const acceptedFIleType = 'application/json';
       if (Object.is(selected.type, acceptedFIleType)) {
         const reader = new FileReader();
-        reader.onload = (e) => {
+        reader.onload = () => {
           const currentContent = JSON.parse(reader.result);
-          if (InvertedIndexUtilities.readBookData(currentContent)) {
+          if (InvertedIndexUtilities.validateData(currentContent)) {
             $scope.myInvertedIndex.files[selected.name] = currentContent;
             $scope.$apply(() => {
               $scope.availableFiles = Object.keys($scope.myInvertedIndex.files);
@@ -65,14 +65,14 @@ angular.module('InvertedIndexApp', [])
     });
   });
 
-    $(document).ready(() => {
-      $('select').material_select();
-      $('.collapsible').collapsible();
+$(document).ready(() => {
+  $('select').material_select();
+  $('.collapsible').collapsible();
 
-      $('select').one('DOMSubtreeModified', (event) => {
-        setTimeout(() => {
-          $('select').material_select();
-        }, 1000);
-      });
-    });
+  $('select').on('DOMSubtreeModified', () => {
+    setTimeout(() => {
+      $('select').material_select();
+    }, 1000);
+  });
+});
 
