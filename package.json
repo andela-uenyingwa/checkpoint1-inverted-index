@@ -16,7 +16,6 @@
     "eslint-config-airbnb-base": "^11.0.0",
     "eslint-plugin-import": "^2.2.0",
     "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
     "gulp-browserify": "^0.5.1",
     "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.8",
@@ -29,7 +28,7 @@
   },
   "scripts": {
     "start": "gulp",
-    "test": "gulp watch-test"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",

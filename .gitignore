@@ -2,3 +2,5 @@ node_modules
 .coveralls
 coverage
 .coveralls.yml
+jasmine/build
+
