@@ -12,8 +12,7 @@ config:
   - javascript
 ratings:
   paths:
-  - src
-/*.js
+  - src/*.js
 exclude_paths:
 - src/js/*.js
 - jasmine/build/
