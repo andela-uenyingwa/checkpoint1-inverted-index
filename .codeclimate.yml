@@ -6,6 +6,8 @@ engines:
   duplication:
     enabled: true
     checks:
+      no-unused-vars:
+        enabled: false
       Similar code:
         enabled: false
     config:
@@ -18,3 +20,4 @@ exclude_paths:
 - jasmine/build/
 - jasmine/lib/
 - gulpfile.js
+
