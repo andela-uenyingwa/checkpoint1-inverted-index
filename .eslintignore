@@ -1,4 +1,4 @@
-jasmine/lib
+jasmine
 node_modules
 .vscode
-jasmine/build
+karma.conf.js
