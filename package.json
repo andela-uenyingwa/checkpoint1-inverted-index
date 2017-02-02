@@ -4,13 +4,15 @@
   "description": "Andela checkpoint 1",
   "main": "index.js",
   "dependencies": {
+    "browserify-shim": "^3.8.13",
     "eslint": "^3.14.1",
-    "eslint-config-airbnb-base": "^11.0.1",
     "eslint-config-airbnb": "^14.0.0",
+    "eslint-config-airbnb-base": "^11.0.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.9.0",
-    "gulp-jasmine-browser": "^1.7.1"
+    "gulp-jasmine-browser": "^1.7.1",
+    "sweetalert": "^1.1.3"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
