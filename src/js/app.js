@@ -32,15 +32,18 @@ angular.module('InvertedIndexApp', [])
                 $scope.currentFile = $scope.filename;
               });
             } else {
-              swal('Oops...', 'Invalid JSON format! Please select a valid JSON file');
+              swal('Oops...', `Invalid JSON format!
+              Please select a valid JSON file`);
             }
           } catch (err) {
-            swal('Oops...', 'Invalid JSON format! Please select a valid JSON file');
+            swal('Oops...', `Invalid JSON format!
+            Please select a valid JSON file`);
           }
         };
         reader.readAsText(selected);
       } else {
-        swal('Oops...', 'Invalid file format! Please select a JSON file');
+        swal('Oops...', `Invalid file format!
+        Please select a JSON file`);
       }
     };
 

@@ -41,7 +41,7 @@ class InvertedIndexUtilities {
       });
       return true;
     } catch (err) {
-      alert('Invalid file!');
+      return err;
     }
   }
 }
