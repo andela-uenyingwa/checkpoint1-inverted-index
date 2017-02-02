@@ -1,5 +1,9 @@
 body {
-  background: lightgrey;
+  background: #efefef;
+}
+
+.brand-logo {
+  margin-left: 20px;
 }
 
 .color1 {

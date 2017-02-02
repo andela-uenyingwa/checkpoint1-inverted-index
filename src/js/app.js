@@ -23,20 +23,27 @@ angular.module('InvertedIndexApp', [])
       if (Object.is(selected.type, acceptedFIleType)) {
         const reader = new FileReader();
         reader.onload = () => {
-          const currentContent = JSON.parse(reader.result);
-          if (InvertedIndexUtilities.validateData(currentContent)) {
-            $scope.myInvertedIndex.files[selected.name] = currentContent;
-            $scope.$apply(() => {
-              $scope.availableFiles = Object.keys($scope.myInvertedIndex.files);
-              $scope.currentFile = $scope.filename;
-            });
-          } else {
-            return false;
+          try {
+            const currentContent = JSON.parse(reader.result);
+            if (InvertedIndexUtilities.validateData(currentContent)) {
+              $scope.myInvertedIndex.files[selected.name] = currentContent;
+              $scope.$apply(() => {
+                $scope.availableFiles = Object.keys($scope.myInvertedIndex.files);
+                $scope.currentFile = $scope.filename;
+              });
+            } else {
+              swal('Oops...', `Invalid JSON format!
+              Please select a valid JSON file`);
+            }
+          } catch (err) {
+            swal('Oops...', `Invalid JSON format!
+            Please select a valid JSON file`);
           }
         };
         reader.readAsText(selected);
       } else {
-        return false;
+        swal('Oops...', `Invalid file format!
+        Please select a JSON file`);
       }
     };
 
