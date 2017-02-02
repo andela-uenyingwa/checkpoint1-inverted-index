@@ -2,6 +2,10 @@ body {
   background: #efefef;
 }
 
+.brand-logo {
+  margin-left: 20px;
+}
+
 .color1 {
   background-color: #303f9f !important;
 }
