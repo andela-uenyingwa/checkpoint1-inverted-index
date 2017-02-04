@@ -22,7 +22,6 @@ class InvertedIndexUtilities {
    * @param {String} string string to generate token from
    * @return {Array} an array of generated token
    */
-
   static getTokens(string) {
     const tokens = this.cleanString(string);
     return Array.from(new Set(tokens));
