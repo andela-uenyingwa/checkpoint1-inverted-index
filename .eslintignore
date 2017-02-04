@@ -4,3 +4,4 @@ node_modules/
 karma.conf.js
 jasmine/lib/jasmine-2.3.4/jasmine-html.js
 jasmine/lib/jasmine-2.3.4/jasmine.js
+src/js/sweetalert.min.js
