@@ -12,28 +12,24 @@ class InvertedIndex {
 
   /**
    * createIndex
-   * @param {Object} filePath name of the indexed file
+   * @param {String} fileName name of the file to be indexed
+   * @param {Object} fileContent contents of the file to be indexed
    * @return {Object} indexed file name and it's indices
    */
-  createIndex(filePath) {
-    const currentFile = this.files[filePath];
-    this.indexList[filePath] = this.indexList[filePath] || {};
-    const docLength = currentFile.length;
-    for (let docIndex = 0; docIndex < docLength; docIndex += 1) {
-      const currentDoc = currentFile[docIndex];
-      const getContent = InvertedIndexUtilities.getToken(
-        `${currentDoc.title} ${currentDoc.text}`);
+  createIndex(fileName, fileContent) {
+    const currentFile = this.files[fileName];
+    this.indexList[fileName] = this.indexList[fileName] || {};
+    currentFile.forEach((book, index) => {
+      const getContent = InvertedIndexUtilities
+      .getTokens(`${book.title} ${book.text}`);
       getContent.forEach((word) => {
-        if (this.indexList[filePath].hasOwnProperty(word)) {
-          if (this.indexList[filePath][word].indexOf(docIndex) === -1) {
-            this.indexList[filePath][word].push(docIndex);
-          }
+        if (this.indexList[fileName][word]) {
+          this.indexList[fileName][word].push(index);
         } else {
-          this.indexList[filePath][word] = [docIndex];
+          this.indexList[fileName][word] = [index];
         }
       });
-    }
-    return this.indexList;
+    });
   }
 
   /**
@@ -43,7 +39,10 @@ class InvertedIndex {
    * @return {Object} a key pair value of each word and their index
    */
   getIndex(fileName) {
-    return this.indexList[fileName];
+    const result = {};
+    result[fileName] = this.indexList[fileName];
+    return result;
+    // return this.indexList[fileName];
   }
 
   /**
@@ -54,25 +53,18 @@ class InvertedIndex {
    * @return {Object} words and their index
    */
   searchIndex(terms, filename) {
-    this.result = {};
-    const fileName = filename || Object.keys(this.indexList);
-    const validTerms = InvertedIndexUtilities.getToken(terms);
-    fileName.forEach((currentFile) => {
-      if (currentFile in this.indexList) {
-        validTerms.forEach((term) => {
-          if (term in this.indexList[currentFile]) {
-            if (currentFile in this.result) {
-              this.result[currentFile][term] = this
-                .indexList[currentFile][term];
-            } else {
-              this.result[currentFile] = {};
-              this.result[currentFile][term] = this
-                .indexList[currentFile][term];
-            }
-          }
-        });
-      }
+    const result = {};
+    const fileName = filename ? [filename] : Object.keys(this.indexList);
+    const searchTerms = InvertedIndexUtilities.getTokens(terms);
+    fileName.forEach((file) => {
+      searchTerms.forEach((word) => {
+        const wordLocations = this.indexList[file][word];
+        if (wordLocations) {
+          result[file] = result[file] || {};
+          result[file][word] = wordLocations;
+        }
+      });
     });
-    return this.result;
+    return result;
   }
 }

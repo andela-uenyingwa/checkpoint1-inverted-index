@@ -4,19 +4,28 @@
 class InvertedIndexUtilities {
 
   /**
-   * getToken
+   * cleanString
+   * removes unwanted punctuations from string
+   * @param{String} string string to remove unwanted punctuations from
+   * @return {Array} an array of valid string
+   */
+  static cleanString(string) {
+    const validCharacters = string.replace(/[^\w+\s]/gi, '')
+    .toLowerCase()
+    .split(' ');
+    return validCharacters;
+  }
+
+  /**
+   * getTokens
    * gets an array of tokens from a string
    * @param {String} string string to generate token from
-   * @return {Object} an array of generated token
+   * @return {Array} an array of generated token
    */
-  static getToken(string) {
-    const badValues = /[^a-zA-Z0-9\s]/g;
-    const tokens = string.replace(badValues, ' ')
-      .toLowerCase().split(' ')
-      .filter(text =>
-        text
-      );
-    return tokens;
+
+  static getTokens(string) {
+    const tokens = this.cleanString(string);
+    return Array.from(new Set(tokens));
   }
 
   /**
@@ -31,11 +40,9 @@ class InvertedIndexUtilities {
     }
     try {
       data.forEach((currentDoc) => {
-        const hasTitle = Object.prototype.hasOwnProperty
-          .call(currentDoc, 'title');
-        const hasText = Object.prototype.hasOwnProperty
-          .call(currentDoc, 'text');
-        if (!hasTitle || !(hasText)) {
+        const hasTitle = currentDoc.title;
+        const hasText = currentDoc.text;
+        if (!hasTitle && !(hasText)) {
           return false;
         }
       });
@@ -45,4 +52,3 @@ class InvertedIndexUtilities {
     }
   }
 }
-
