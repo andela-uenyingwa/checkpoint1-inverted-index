@@ -12,8 +12,8 @@ engines:
       - javascript
 ratings:
   paths:
-  - src/inverted-index.js
+  - src/js/inverted-index.js
 exclude_paths:
-- "jasmine/lib/jasmine-2.3.4/jasmine-html.js"
-- "jasmine/lib/jasmine-2.3.4/jasmine.js"
-- "gulpfile.js"
+- jasmine/lib/jasmine-2.3.4/jasmine-html.js
+- jasmine/lib/jasmine-2.3.4/jasmine.js
+- gulpfile.js
