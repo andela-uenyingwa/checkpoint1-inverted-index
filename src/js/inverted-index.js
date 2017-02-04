@@ -30,6 +30,7 @@ class InvertedIndex {
         }
       });
     });
+    return this.indexList;
   }
 
   /**
@@ -42,7 +43,6 @@ class InvertedIndex {
     const result = {};
     result[fileName] = this.indexList[fileName];
     return result;
-    // return this.indexList[fileName];
   }
 
   /**
