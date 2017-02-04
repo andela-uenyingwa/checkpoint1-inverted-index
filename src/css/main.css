@@ -1,5 +1,8 @@
 body {
   background: #efefef;
+  font-family: 'Titillium Web', sans-serif;
+  max-height: 100px;
+  overflow: auto;
 }
 
 .brand-logo {
@@ -28,14 +31,13 @@ body {
 }
 
 .collapsible-body {
-  max-height: 300px;
+  max-height: 200px;
   overflow: auto;
 }
 
 footer {
   text-align: center;
-  min-height: 100vh;
-  position: fixed;
+  position: absolute;
   width: 100%;
-  margin-top: 540px;
+  margin-top: 285px;
 }
