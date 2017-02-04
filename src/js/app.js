@@ -28,7 +28,7 @@ angular.module('InvertedIndexApp', [])
             if (InvertedIndexUtilities.validateData(currentContent)) {
               $scope.myInvertedIndex.files[selected.name] = currentContent;
               $scope.$apply(() => {
-                $scope.availableFiles = Object.key(
+                $scope.availableFiles = Object.keys(
                     $scope.myInvertedIndex.files
                   );
                 $scope.currentFile = $scope.filename;
