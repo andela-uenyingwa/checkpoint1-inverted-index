@@ -52,13 +52,10 @@ describe('Inverted Index', () => {
     it(`should verify that the index maps the string keys to
     the correct objects in the JSON array`, () => {
       index = myInvertedIndex.getIndex('book.json');
-      expect(myInvertedIndex.getIndex('book.json').alice).toEqual({
-        'book.json': {
-          alice: [0]
-        }
-      });
-      // expect(myInvertedIndex.getIndex('book.json').alice).toEqual([0]);
-      // expect(myInvertedIndex.getIndex('book.json').lord).toEqual([1]);
+      console.log(index);
+      expect(index['book.json'].and).toEqual([0, 1]);
+      expect(index['book.json'].alice).toEqual([0]);
+      expect(index['book.json'].lord).toEqual([1]);
     });
   });
 
