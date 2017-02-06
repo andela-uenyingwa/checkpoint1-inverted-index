@@ -52,7 +52,6 @@ describe('Inverted Index', () => {
     it(`should verify that the index maps the string keys to
     the correct objects in the JSON array`, () => {
       index = myInvertedIndex.getIndex('book.json');
-      console.log(index);
       expect(index['book.json'].and).toEqual([0, 1]);
       expect(index['book.json'].alice).toEqual([0]);
       expect(index['book.json'].lord).toEqual([1]);
@@ -62,21 +61,22 @@ describe('Inverted Index', () => {
   describe('Search Index', () => {
     it(`should return an array of correct objects that contains
     the search terms`, () => {
-      expect(myInvertedIndex.searchIndex('alice fellowship',
-      ['book.json'])).toEqual({ 'book.json': {
-        alice: [0],
-        fellowship: [1]
-      }
-    });
+      expect(myInvertedIndex.searchIndex('alice fellowship', ['book.json'])).toEqual({
+        'book.json': {
+          alice: [0],
+          fellowship: [1]
+        }
+      });
     });
 
     it(`should go through all indexed files if a filename is
     not passed`, () => {
-      expect(myInvertedIndex.searchIndex('fellowship')).toEqual(
-        { 'book.json': { fellowship: [1] } });
+      expect(myInvertedIndex.searchIndex('fellowship')).toEqual({
+        'book.json': {
+          fellowship: [1]
+        }
+      });
     });
   });
 });
-
-
 },{"./../bad-book.json":1,"./../books.json":2,"./../empty-book.json":3}]},{},[4])
