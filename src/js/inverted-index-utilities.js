@@ -47,7 +47,7 @@ class InvertedIndexUtilities {
       });
       return true;
     } catch (err) {
-      return err;
+      return false;
     }
   }
 }
