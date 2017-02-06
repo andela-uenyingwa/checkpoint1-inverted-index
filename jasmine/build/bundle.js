@@ -61,7 +61,8 @@ describe('Inverted Index', () => {
   describe('Search Index', () => {
     it(`should return an array of correct objects that contains
     the search terms`, () => {
-      expect(myInvertedIndex.searchIndex('alice fellowship', ['book.json'])).toEqual({
+      expect(myInvertedIndex
+      .searchIndex('alice fellowship', ['book.json'])).toEqual({
         'book.json': {
           alice: [0],
           fellowship: [1]
@@ -79,4 +80,5 @@ describe('Inverted Index', () => {
     });
   });
 });
+
 },{"./../bad-book.json":1,"./../books.json":2,"./../empty-book.json":3}]},{},[4])
