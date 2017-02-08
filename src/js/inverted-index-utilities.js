@@ -34,20 +34,21 @@ class InvertedIndexUtilities {
    * @return {Boolean} validity status of the JSON content
    */
   static validateData(data) {
+    let status = true;
     if (typeof data !== 'object' || data.length === 0) {
-      return false;
+      status = false;
     }
     try {
       data.forEach((currentDoc) => {
         const hasTitle = currentDoc.title;
         const hasText = currentDoc.text;
         if (!hasTitle && !(hasText)) {
-          return false;
+          status = false;
         }
       });
-      return true;
+      return status;
     } catch (err) {
-      return false;
+      return status;
     }
   }
 }
