@@ -9,12 +9,15 @@ myInvertedIndex.files['book.json'] = book;
 
 describe('Inverted Index', () => {
   describe('Validate JSON data', () => {
-    it('should return false if the file uploaded is not a valid JSON file', () => {
-      expect(InvertedIndexUtilities.validateData(invalidBook)).toEqual(false);
+    it(`should return false if the file
+    uploaded is not a valid JSON file`, () => {
+      expect(InvertedIndexUtilities.validateData(invalidBook))
+      .toEqual(false);
     });
 
-    it('should return false if the file uploaded is empty', () => {
-      expect(InvertedIndexUtilities.validateData(emptyBook)).toEqual(false);
+    it(`should return false if the file uploaded is empty`, () => {
+      expect(InvertedIndexUtilities.validateData(emptyBook))
+      .toEqual(false);
     });
   });
 
