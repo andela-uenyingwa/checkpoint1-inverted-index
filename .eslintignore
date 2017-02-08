@@ -1,10 +1,10 @@
-jasmine/
+jasmine/lib
 node_modules/
 .vscode
 karma.conf.js
-jasmine/lib/jasmine-2.3.4/jasmine-html.js
-jasmine/lib/jasmine-2.3.4/jasmine.js
+jasmine/build/bundle.js
 jasmine/spec/bad-book.json
 jasmine/spec/books.json
 jasmine/spec/empty-book.json
+gulp.js
 src/js/sweetalert.min.js
