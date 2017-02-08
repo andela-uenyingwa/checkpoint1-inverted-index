@@ -3,8 +3,8 @@ node_modules/
 .vscode
 karma.conf.js
 jasmine/build/bundle.js
-jasmine/spec/bad-book.json
-jasmine/spec/books.json
-jasmine/spec/empty-book.json
+jasmine/bad-book.json
+jasmine/books.json
+jasmine/empty-book.json
 gulpfile.js
 src/js/sweetalert.min.js
