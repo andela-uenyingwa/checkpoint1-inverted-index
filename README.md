@@ -3,7 +3,6 @@
 [![Code Climate](https://codeclimate.com/github/andela-uenyingwa/checkpoint1-inverted-index/badges/gpa.svg)](https://codeclimate.com/github/andela-uenyingwa/checkpoint1-inverted-index)
 # Inverted Index - [https://uloaku-invertedindex.herokuapp.com/](https://uloaku-invertedindex.herokuapp.com/)
 
-# Checkpoint1-inverted-index
 An inverted index consists of a list of all the unique words that appear in any document, and for each word, a list of the documents in which it appears.
 
 Inverted index object that takes a JSON array of text objects and creates an index from the array. The index allows a user to search for text blocks in the array that contain a specified collection of words.
