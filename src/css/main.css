@@ -51,7 +51,7 @@ body {
 
 footer {
   text-align: center;
-  position: absolute;
   width: 100%;
   margin-top: 285px;
+  position: fixed;
 }
