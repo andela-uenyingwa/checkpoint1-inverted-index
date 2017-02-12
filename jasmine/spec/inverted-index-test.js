@@ -5,8 +5,6 @@ const book = require('./../books.json');
 const emptyBook = require('./../empty-book.json');
 const invalidBook = require('./../bad-book.json');
 
-myInvertedIndex.files['book.json'] = book;
-
 describe('Inverted Index', () => {
   describe('Validate JSON data', () => {
     it(`should return false if the file
@@ -15,7 +13,7 @@ describe('Inverted Index', () => {
       .toEqual(false);
     });
 
-    it(`should return false if the file uploaded is empty`, () => {
+    it('should return false if the file uploaded is empty', () => {
       expect(InvertedIndexUtilities.validateData(emptyBook))
       .toEqual(false);
     });
@@ -24,17 +22,18 @@ describe('Inverted Index', () => {
   describe('Populate Index', () => {
     it(`should verify that the index is created once the JSON
     file has been read`, () => {
-      const index = myInvertedIndex.createIndex('book.json');
-      expect(index['book.json']).toBeDefined();
-      expect(typeof (index)).toBe('object');
+      const myMap = myInvertedIndex.indexMap;
+      const index = myInvertedIndex.createIndex('books.json', book);
+      expect(Object.prototype.hasOwnProperty.call(myMap, 'books.json'))
+      .toEqual(true);
     });
 
     it(`should verify that the index maps the string keys to
     the correct objects in the JSON array`, () => {
-      index = myInvertedIndex.getIndex('book.json');
-      expect(index['book.json'].and).toEqual([0, 1]);
-      expect(index['book.json'].alice).toEqual([0]);
-      expect(index['book.json'].lord).toEqual([1]);
+      index = myInvertedIndex.getIndex('books.json');
+      expect(index['books.json'].and).toEqual([0, 1]);
+      expect(index['books.json'].alice).toEqual([0]);
+      expect(index['books.json'].lord).toEqual([1]);
     });
   });
 
@@ -42,8 +41,8 @@ describe('Inverted Index', () => {
     it(`should return an array of correct objects that contains
     the search terms`, () => {
       expect(myInvertedIndex
-      .searchIndex('alice fellowship', ['book.json'])).toEqual({
-        'book.json': {
+      .searchIndex('alice fellowship', 'books.json')).toEqual({
+        'books.json': {
           alice: [0],
           fellowship: [1]
         }
@@ -53,7 +52,7 @@ describe('Inverted Index', () => {
     it(`should go through all indexed files if a filename is
     not passed`, () => {
       expect(myInvertedIndex.searchIndex('fellowship')).toEqual({
-        'book.json': {
+        'books.json': {
           fellowship: [1]
         }
       });

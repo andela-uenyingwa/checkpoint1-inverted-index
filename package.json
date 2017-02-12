@@ -4,18 +4,19 @@
   "description": "Andela checkpoint 1",
   "main": "index.js",
   "dependencies": {
-    "browserify-shim": "^3.8.13",
     "browser-sync": "^2.18.6",
-    "eslint": "^3.14.1",
+    "browserify-shim": "^3.8.13",
+    "eslint": "^3.15.0",
     "eslint-config-airbnb": "^14.0.0",
     "eslint-config-airbnb-base": "^11.0.1",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^3.0.2","gulp": "^3.9.1",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0",
+    "gulp": "^3.9.1",
     "gulp-browserify": "^0.5.1",
+    "gulp-jasmine-browser": "^1.7.1",
     "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.8",
-    "eslint-plugin-react": "^6.9.0",
-    "gulp-jasmine-browser": "^1.7.1",
     "karma": "^1.4.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
@@ -26,8 +27,7 @@
   },
   "devDependencies": {
     "browserify": "^13.3.0",
-    "coveralls": "^2.11.15",
-    "gulp": "^3.9.1"
+    "coveralls": "^2.11.15"
   },
   "scripts": {
     "start": "gulp",

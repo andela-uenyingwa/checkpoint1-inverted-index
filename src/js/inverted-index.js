@@ -6,8 +6,7 @@ class InvertedIndex {
    * @constructor
    */
   constructor() {
-    this.files = {};
-    this.indexList = {};
+    this.indexMap = {};
   }
 
   /**
@@ -17,20 +16,21 @@ class InvertedIndex {
    * @return {Object} indexed file name and it's indices
    */
   createIndex(fileName, fileContent) {
-    const currentFile = this.files[fileName];
-    this.indexList[fileName] = this.indexList[fileName] || {};
-    currentFile.forEach((book, index) => {
+    const content = fileContent;
+    this.indexMap[fileName] = this.indexMap[fileName] || {};
+
+    content.forEach((book, index) => {
       const getContent = InvertedIndexUtilities
       .getTokens(`${book.title} ${book.text}`);
+
       getContent.forEach((word) => {
-        if (this.indexList[fileName][word]) {
-          this.indexList[fileName][word].push(index);
+        if (this.indexMap[fileName][word]) {
+          this.indexMap[fileName][word].push(index);
         } else {
-          this.indexList[fileName][word] = [index];
+          this.indexMap[fileName][word] = [index];
         }
       });
     });
-    return this.indexList;
   }
 
   /**
@@ -41,7 +41,7 @@ class InvertedIndex {
    */
   getIndex(fileName) {
     const result = {};
-    result[fileName] = this.indexList[fileName];
+    result[fileName] = this.indexMap[fileName];
     return result;
   }
 
@@ -54,14 +54,18 @@ class InvertedIndex {
    */
   searchIndex(terms, filename) {
     const result = {};
-    const fileName = filename ? [filename] : Object.keys(this.indexList);
+    const fileName = filename ? [filename] : Object.keys(this.indexMap);
     const searchTerms = InvertedIndexUtilities.getTokens(terms);
+
     fileName.forEach((file) => {
       searchTerms.forEach((word) => {
-        const wordLocations = this.indexList[file][word];
+        const wordLocations = this.indexMap[file][word];
+        result[file] = result[file] || {};
+
         if (wordLocations) {
-          result[file] = result[file] || {};
           result[file][word] = wordLocations;
+        } else {
+          result[file][word] = [];
         }
       });
     });

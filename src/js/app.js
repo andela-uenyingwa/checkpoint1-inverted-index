@@ -2,9 +2,9 @@ const myApp = angular.module('InvertedIndexApp', [])
   .controller('AppController', ($scope) => {
     $scope.appName = 'Inverted Index';
     $scope.myInvertedIndex = new InvertedIndex();
+    const files = {};
     $scope.indexTable = '';
     $scope.indexTableFiles = [];
-    $scope.searchResults = '';
     $scope.availableFiles = [];
     $scope.currentFile = '';
 
@@ -16,7 +16,6 @@ const myApp = angular.module('InvertedIndexApp', [])
       }
     });
 
-
     $scope.readAndCheckFile = (selected) => {
       $scope.filename = selected.name;
       const acceptedFIleType = 'application/json';
@@ -26,11 +25,16 @@ const myApp = angular.module('InvertedIndexApp', [])
           try {
             const currentContent = JSON.parse(reader.result);
             if (InvertedIndexUtilities.validateData(currentContent)) {
-              $scope.myInvertedIndex.files[selected.name] = currentContent;
-              swal('Great!...', 'File uploaded successfully!');
+              files[selected.name] = currentContent;
+              swal({
+                title: 'Great!...',
+                text: 'File uploaded successfully!',
+                showConfirmButton: false,
+                timer: 1000
+              });
               $scope.$apply(() => {
                 $scope.availableFiles = Object.keys(
-                  $scope.myInvertedIndex.files
+                  files
                 );
                 $scope.currentFile = $scope.filename;
               });
@@ -50,10 +54,10 @@ const myApp = angular.module('InvertedIndexApp', [])
       }
     };
 
-    $scope.arrayFromFileLength = (fileName) => {
+    $scope.arrayFromFileLength = () => {
       const selectBox = document.getElementById('file-to-index');
-      const fileToIndex = selectBox.options[selectBox.selectedIndex].value;
-      const fileLength = $scope.myInvertedIndex.files[fileToIndex].length;
+      const fileName = selectBox.options[selectBox.selectedIndex].value;
+      const fileLength = files[fileName].length;
       const arr = [];
       for (let fileIndex = 0; fileIndex < fileLength; fileIndex += 1) {
         arr.push(fileIndex);
@@ -63,18 +67,25 @@ const myApp = angular.module('InvertedIndexApp', [])
 
     $scope.createIndex = () => {
       const selectBox = document.getElementById('file-to-index');
-      const fileToIndex = selectBox.options[selectBox.selectedIndex].value;
-      if (fileToIndex !== '') {
-        $scope.myInvertedIndex.createIndex(fileToIndex);
-        $scope.indexTable = $scope.myInvertedIndex.getIndex(fileToIndex);
+      const fileName = selectBox.options[selectBox.selectedIndex].value;
+      if (fileName !== '' && !$scope.myInvertedIndex.indexMap[fileName]) {
+        $scope.myInvertedIndex.createIndex(fileName, files[fileName]);
+        $scope.indexTable = $scope.myInvertedIndex.getIndex(fileName);
         $scope.currentFile = '';
-      } else {
+      } else if (fileName === '') {
         swal({
           title: 'Are you sure you have selected a file?',
           text: `I'm just saying cos I don't think you have!
             Now kindly select a file, then create index.`,
           type: 'error',
           confirmButtonText: 'Ok'
+        });
+      } else {
+        swal({
+          title: '',
+          text: 'Index has already been created!',
+          showConfirmButton: false,
+          timer: 1000
         });
       }
     };
@@ -86,11 +97,21 @@ const myApp = angular.module('InvertedIndexApp', [])
         .options[selectSearch.selectedIndex].value;
       const keyValue = e.target.value;
       $scope.$apply(() => {
-        if (fileToSearch === '') {
-          $scope.searchResults = $scope.myInvertedIndex.searchIndex(keyValue);
+        $scope.searchResults = {};
+        const keys = Object.keys($scope.myInvertedIndex.indexMap);
+        if (keys.length !== 0) {
+          if (fileToSearch === '') {
+            $scope.searchResults = $scope.myInvertedIndex
+              .searchIndex(keyValue);
+          } else {
+            $scope.searchResults = $scope.myInvertedIndex
+              .searchIndex(keyValue, fileToSearch);
+          }
         } else {
-          $scope.searchResults = $scope.myInvertedIndex
-            .searchIndex(keyValue, fileToSearch);
+          swal({
+            title: '',
+            text: 'Please create index first'
+          });
         }
       });
     });
