@@ -36,7 +36,7 @@ class InvertedIndexUtilities {
   static validateData(data) {
     let status = true;
 
-    if (typeof data !== 'object' || data.length === 0) {
+    if (!Array.isArray(data) || data.length === 0) {
       status = false;
     }
 
