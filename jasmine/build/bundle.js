@@ -47,8 +47,8 @@ describe('Inverted Index', () => {
     file has been read`, () => {
       const myMap = myInvertedIndex.indexMap;
       const index = myInvertedIndex.createIndex('books.json', book);
-      expect(Object.prototype.hasOwnProperty.call(myMap, 'books.json')).toEqual(true);
-      // expect(typeof (index)).toBe('object');
+      expect(Object.prototype.hasOwnProperty.call(myMap, 'books.json'))
+      .toEqual(true);
     });
 
     it(`should verify that the index maps the string keys to
