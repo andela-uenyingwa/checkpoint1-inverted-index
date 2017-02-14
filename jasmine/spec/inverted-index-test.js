@@ -50,8 +50,10 @@ describe('Inverted Index', () => {
     it('should attach a search result to the filename', () => {
       const result = myInvertedIndex.searchIndex('alice', 'books.json');
       expect((Object.keys(result)).includes('books.json')).toBeTruthy();
-      expect((Object.keys(result['books.json'])).includes('alice')).toBeTruthy();
-      expect(result['books.json'].alice).toEqual(myInvertedIndex.indexMap['books.json'].alice);
+      expect((Object.keys(result['books.json'])).includes('alice'))
+      .toBeTruthy();
+      expect(result['books.json'].alice).toEqual(myInvertedIndex
+      .indexMap['books.json'].alice);
     });
 
     it(`should return an array of correct objects that contains
