@@ -11,11 +11,13 @@ describe('Inverted Index', () => {
     uploaded is not a valid JSON file`, () => {
       expect(InvertedIndexUtilities.validateData(invalidBook))
       .toEqual(false);
-    });
-
-    it('should return false if the file uploaded is empty', () => {
+      expect(InvertedIndexUtilities.validateData(2)).toEqual(false);
       expect(InvertedIndexUtilities.validateData(emptyBook))
       .toEqual(false);
+    });
+
+    it('should return true for valid JSON file', () => {
+      expect(InvertedIndexUtilities.validateData(book)).toEqual(true);
     });
   });
 
@@ -23,21 +25,37 @@ describe('Inverted Index', () => {
     it(`should verify that the index is created once the JSON
     file has been read`, () => {
       const myMap = myInvertedIndex.indexMap;
-      const index = myInvertedIndex.createIndex('books.json', book);
+      myInvertedIndex.createIndex('books.json', book);
       expect(Object.prototype.hasOwnProperty.call(myMap, 'books.json'))
       .toEqual(true);
+      expect(Object.keys(myMap['books.json']).length).not.toEqual(0);
+      expect(Object.keys(myMap['books.json']).length).toEqual(31);
     });
 
     it(`should verify that the index maps the string keys to
     the correct objects in the JSON array`, () => {
-      index = myInvertedIndex.getIndex('books.json');
+      const index = myInvertedIndex.getIndex('books.json');
       expect(index['books.json'].and).toEqual([0, 1]);
       expect(index['books.json'].alice).toEqual([0]);
       expect(index['books.json'].lord).toEqual([1]);
     });
+
+    it('should return undefined for nonexisting words', () => {
+      const index = myInvertedIndex.getIndex('books.json');
+      expect(index['books.json'].enyingwa).toBeUndefined();
+    });
   });
 
   describe('Search Index', () => {
+    it('should attach a search result to the filename', () => {
+      const result = myInvertedIndex.searchIndex('alice', 'books.json');
+      expect((Object.keys(result)).includes('books.json')).toBeTruthy();
+      expect((Object.keys(result['books.json'])).includes('alice'))
+      .toBeTruthy();
+      expect(result['books.json'].alice).toEqual(myInvertedIndex
+      .indexMap['books.json'].alice);
+    });
+
     it(`should return an array of correct objects that contains
     the search terms`, () => {
       expect(myInvertedIndex
@@ -45,6 +63,15 @@ describe('Inverted Index', () => {
         'books.json': {
           alice: [0],
           fellowship: [1]
+        }
+      });
+    });
+
+    it('should return an empty array, if search term is not found', () => {
+      expect(myInvertedIndex.searchIndex('uloaku code', 'books.json')).toEqual({
+        'books.json': {
+          uloaku: [],
+          code: []
         }
       });
     });

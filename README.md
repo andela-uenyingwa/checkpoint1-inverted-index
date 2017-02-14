@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/andela-uenyingwa/checkpoint1-inverted-index.svg?branch=master)](https://travis-ci.org/andela-uenyingwa/checkpoint1-inverted-index)
 [![Coverage Status](https://coveralls.io/repos/github/andela-uenyingwa/checkpoint1-inverted-index/badge.svg?branch=develop)](https://coveralls.io/github/andela-uenyingwa/checkpoint1-inverted-index?branch=develop)
 [![Code Climate](https://codeclimate.com/github/andela-uenyingwa/checkpoint1-inverted-index/badges/gpa.svg)](https://codeclimate.com/github/andela-uenyingwa/checkpoint1-inverted-index)
-# Inverted Index - [https://uloaku-invertedindex.herokuapp.com/](https://uloaku-invertedindex.herokuapp.com/)
+# [Inverted Index](https://uloaku-invertedindex.herokuapp.com/)
 
 An inverted index consists of a list of all the unique words that appear in any document, and for each word, a list of the documents in which it appears.
 
