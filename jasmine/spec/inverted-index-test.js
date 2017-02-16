@@ -56,7 +56,8 @@ describe('Inverted Index', () => {
       .indexMap['books.json'].alice);
     });
 
-    it('should return an collection of file names with their search results', () => {
+    it(`should return an collection of file names with
+    their search results`, () => {
       expect(myInvertedIndex
       .searchIndex('alice fellowship', 'books.json')).toEqual({
         'books.json': {
