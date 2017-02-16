@@ -70,6 +70,7 @@ const myApp = angular.module('InvertedIndexApp', [])
       const fileName = selectBox.options[selectBox.selectedIndex].value;
       if (fileName !== '' && !$scope.myInvertedIndex.indexMap[fileName]) {
         $scope.myInvertedIndex.createIndex(fileName, files[fileName]);
+        $scope.fileBooks = files[fileName];
         $scope.indexTable = $scope.myInvertedIndex.getIndex(fileName);
         $scope.currentFile = '';
       } else if (fileName === '') {
