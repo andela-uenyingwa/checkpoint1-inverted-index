@@ -52,7 +52,7 @@ describe('Inverted Index', () => {
       expect(Object.prototype.hasOwnProperty.call(myMap, 'books.json'))
       .toEqual(true);
       expect(Object.keys(myMap['books.json']).length).not.toEqual(0);
-      expect(Object.keys(myMap['books.json']).length).toEqual(31);
+      expect(Object.keys(myMap['books.json']).length).toEqual(25);
     });
 
     it(`should verify that the index maps the string keys to
@@ -60,7 +60,7 @@ describe('Inverted Index', () => {
       const index = myInvertedIndex.getIndex('books.json');
       expect(index['books.json'].and).toEqual([0, 1]);
       expect(index['books.json'].alice).toEqual([0]);
-      expect(index['books.json'].lord).toEqual([1]);
+      expect(index['books.json'].hobbit).toEqual([1]);
     });
 
     it('should return undefined for nonexisting words', () => {
@@ -79,12 +79,23 @@ describe('Inverted Index', () => {
       .indexMap['books.json'].alice);
     });
 
-    it('should return an collection of file names with their search results', () => {
+    it(`should return search result for a varied
+    number of search terms`, () => {
       expect(myInvertedIndex
-      .searchIndex('alice fellowship', 'books.json')).toEqual({
+      .searchIndex('alice ring', 'books.json')).toEqual({
         'books.json': {
           alice: [0],
-          fellowship: [1]
+          ring: [1]
+        }
+      });
+    });
+
+    it('should return search result for an array of search terms', () => {
+      expect(myInvertedIndex
+      .searchIndex(['alice', 'ring'], 'books.json')).toEqual({
+        'books.json': {
+          alice: [0],
+          ring: [1]
         }
       });
     });
@@ -101,12 +112,12 @@ describe('Inverted Index', () => {
     it(`should go through all indexed files if a filename is
     not passed`, () => {
       myInvertedIndex.createIndex('bk.json', book);
-      expect(myInvertedIndex.searchIndex('fellowship')).toEqual({
+      expect(myInvertedIndex.searchIndex('wizard')).toEqual({
         'books.json': {
-          fellowship: [1]
+          wizard: [1]
         },
         'bk.json': {
-          fellowship: [1]
+          wizard: [1]
         }
       });
     });
