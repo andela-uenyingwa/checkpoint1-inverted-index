@@ -56,8 +56,8 @@ describe('Inverted Index', () => {
       .indexMap['books.json'].alice);
     });
 
-    it(`should return an array of correct objects that contains
-    the search terms`, () => {
+    it(`should return an collection of file names with
+    their search results`, () => {
       expect(myInvertedIndex
       .searchIndex('alice fellowship', 'books.json')).toEqual({
         'books.json': {
@@ -78,8 +78,12 @@ describe('Inverted Index', () => {
 
     it(`should go through all indexed files if a filename is
     not passed`, () => {
+      myInvertedIndex.createIndex('bk.json', book);
       expect(myInvertedIndex.searchIndex('fellowship')).toEqual({
         'books.json': {
+          fellowship: [1]
+        },
+        'bk.json': {
           fellowship: [1]
         }
       });

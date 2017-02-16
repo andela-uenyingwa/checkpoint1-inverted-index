@@ -16,7 +16,7 @@ class InvertedIndex {
    * @return {Object} indexed file name and it's indices
    */
   createIndex(fileName, fileContent) {
-    this.indexMap[fileName] = this.indexMap[fileName] || {};
+    this.indexMap[fileName] = {};
 
     fileContent.forEach((book, index) => {
       const getContent = InvertedIndexUtilities
