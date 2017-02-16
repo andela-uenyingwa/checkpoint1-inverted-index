@@ -48,7 +48,7 @@ gulp.task('karma', ['scripts'], (done) => {
   });
 });
 
-gulp.task('watch', ['browser-sync', 'browserTest'], () => {
+gulp.task('watch', ['browserTest', 'browser-sync'], () => {
   gulp.watch('src/css/**/*.css', reload);
   gulp.watch('**/*.html', reload);
   gulp.watch('src/js/**/*.js', reload);
