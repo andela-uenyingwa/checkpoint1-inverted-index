@@ -19,10 +19,10 @@ class InvertedIndex {
     this.indexMap[fileName] = {};
 
     fileContent.forEach((book, index) => {
-      const getContent = InvertedIndexUtilities
-      .getTokens(`${book.title} ${book.text}`);
+      const docContent = InvertedIndexUtilities
+      .getTokens(book.text);
 
-      getContent.forEach((word) => {
+      docContent.forEach((word) => {
         if (this.indexMap[fileName][word]) {
           this.indexMap[fileName][word].push(index);
         } else {
