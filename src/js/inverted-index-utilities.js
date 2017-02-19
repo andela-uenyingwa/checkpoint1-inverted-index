@@ -10,7 +10,7 @@ class InvertedIndexUtilities {
    * @return {Array} an array of valid string
    */
   static cleanString(content) {
-    const validCharacters = content.replace(/[^\w+\s]/gi, '')
+    const validCharacters = content.replace(/[^\w+]/gi, ' ')
     .toLowerCase()
     .split(' ');
     return validCharacters;
@@ -23,8 +23,12 @@ class InvertedIndexUtilities {
    * @return {Array} an array of generated token
    */
   static getTokens(content) {
-    const tokens = this.cleanString(content);
-    return Array.from(new Set(tokens));
+    let tokens = this.cleanString(content.toString());
+    tokens = Array.from(new Set(tokens));
+    tokens = tokens.filter((item, index) => {
+      return item !== '';
+    });
+    return tokens;
   }
 
   /**

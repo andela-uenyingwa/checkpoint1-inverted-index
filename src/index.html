@@ -6,9 +6,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/css?family=Exo+2|Pacifico|Titillium+Web"
     rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="css/main.css" rel="stylesheet" type="text/css" />
-    <link href="css/sweetalert.css" rel="stylesheet" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="css/main.css" rel="stylesheet" type="text/css" />
+  <link href="css/sweetalert.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body ng-controller="AppController">
@@ -83,7 +83,8 @@
                 <div class="col m4">
                   <div class="input-field">
                     <select id="file-to-search">
-                  <option value="" >Select file to search</option>
+                  <option value="" >Search</option>
+                  <option value="">All Files</option>
                   <option ng-repeat="file in availableFiles" value="{{file}}">{{ file }}
                   </option>
                 </select>
@@ -105,7 +106,7 @@
                             <thead>
                               <tr>
                                 <th data-field="id">Words</th>
-                                <th ng-repeat="items in arrayFromFileLength(key)">Document{{ items + 1}}</th>
+                                <th ng-repeat="book in fileBooks">{{book.title}}</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -133,7 +134,8 @@
                             <thead>
                               <tr>
                                 <th data-field="id">Words</th>
-                                <th ng-repeat="items in arrayFromFileLength(key)">Document{{items + 1}}</th </tr>
+                                <th ng-repeat="book in fileBooks">{{book.title}}</th>
+                                </tr>
                             </thead>
                             <tbody>
                               <tr ng-repeat="(text, number) in value">
